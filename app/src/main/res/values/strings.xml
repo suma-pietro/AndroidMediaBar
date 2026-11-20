@@ -1,0 +1,116 @@
+<resources>
+    <string name="app_name">AndroidMediaBar</string>
+
+    <string name="category_settings">Settings</string>
+    <string name="category_photo">Photo</string>
+    <string name="category_music">Music</string>
+    <string name="category_video">Video</string>
+    <string name="category_games">Games</string>
+    <string name="category_apps">Apps</string>
+
+    <string name="setting_all">All settings</string>
+    <string name="setting_all_desc">Open the system settings</string>
+    <string name="setting_network">Network</string>
+    <string name="setting_network_desc">Wi-Fi and internet connection</string>
+    <string name="setting_bluetooth">Bluetooth</string>
+    <string name="setting_bluetooth_desc">Remotes, controllers and accessories</string>
+    <string name="setting_display">Display</string>
+    <string name="setting_display_desc">Resolution and picture</string>
+    <string name="setting_sound">Sound</string>
+    <string name="setting_sound_desc">Audio output and system sounds</string>
+    <string name="setting_date">Date and time</string>
+    <string name="setting_date_desc">Clock and time zone</string>
+    <string name="setting_apps">Applications</string>
+    <string name="setting_apps_desc">Manage installed apps</string>
+    <string name="setting_storage">Storage</string>
+    <string name="setting_storage_desc">Free space and storage devices</string>
+    <string name="setting_home">Home screen</string>
+    <string name="setting_home_desc">Choose the default launcher</string>
+
+    <string name="empty_category">No content</string>
+    <string name="version_format">Version %1$s</string>
+    <string name="launch_error">Unable to open this item</string>
+
+    <string name="options_title">Options</string>
+    <string name="option_open">Open</string>
+    <string name="option_info">App info</string>
+    <string name="option_uninstall">Uninstall</string>
+
+    <!-- Side panel key hints -->
+    <string name="hint_select">Select</string>
+    <string name="hint_back">Back</string>
+    <string name="hint_close">Close</string>
+
+    <!-- Launcher menus -->
+    <string name="menu_theme">Theme customization</string>
+    <string name="menu_theme_desc">Color, animation and wallpaper</string>
+    <string name="menu_layout">Columns and apps</string>
+    <string name="menu_layout_desc">Hide columns and choose where each app goes</string>
+    <string name="menu_columns">Show/hide columns</string>
+    <string name="menu_assign_apps">Assign apps to columns</string>
+    <string name="menu_move_to">Move to column</string>
+    <string name="option_move">Move to column…</string>
+    <string name="column_auto">Automatic (%1$s)</string>
+    <string name="column_hidden_suffix">%1$s (hidden)</string>
+    <string name="columns_hidden_count">%1$d hidden</string>
+    <string name="columns_all_visible">All visible</string>
+    <string name="apps_count">%1$d apps</string>
+
+    <!-- Theme customization -->
+    <string name="theme_color">Theme color</string>
+    <string name="theme_animation">Background animation</string>
+    <string name="theme_background">Wallpaper</string>
+    <string name="theme_blur">Wallpaper blur</string>
+    <string name="theme_brightness">Background brightness</string>
+    <string name="theme_day_night">Day/night cycle</string>
+
+    <string name="theme_color_original">Original (changes every month)</string>
+    <string name="theme_color_silver">Silver</string>
+    <string name="theme_color_gold">Gold</string>
+    <string name="theme_color_green">Green</string>
+    <string name="theme_color_pink">Pink</string>
+    <string name="theme_color_emerald">Emerald</string>
+    <string name="theme_color_violet">Violet</string>
+    <string name="theme_color_cyan">Cyan</string>
+    <string name="theme_color_blue">Blue</string>
+    <string name="theme_color_purple">Purple</string>
+    <string name="theme_color_orange">Orange</string>
+    <string name="theme_color_brown">Brown</string>
+    <string name="theme_color_red">Red</string>
+    <string name="theme_color_black">Black</string>
+
+    <string name="theme_anim_classic">Classic wave</string>
+    <string name="theme_anim_sparkle">Wave with sparkles</string>
+    <string name="theme_anim_bokeh">Floating lights</string>
+    <string name="theme_anim_static">Still wave</string>
+    <string name="theme_anim_none">None</string>
+
+    <string name="theme_bg_theme">Theme color</string>
+    <string name="theme_bg_image">Custom image</string>
+    <string name="theme_bg_pick">Choose an image…</string>
+    <string name="theme_bg_pick_other">Choose another image…</string>
+
+    <string name="theme_blur_none">None</string>
+    <string name="theme_blur_light">Light</string>
+    <string name="theme_blur_medium">Medium</string>
+    <string name="theme_blur_strong">Strong</string>
+
+    <string name="theme_brightness_format">%1$d%%</string>
+    <string name="theme_on">On</string>
+    <string name="theme_off">Off</string>
+    <string name="theme_only_image">%1$s (custom image only)</string>
+
+    <string name="theme_picker_unavailable">No image picker or file manager available on this device</string>
+    <string name="theme_image_error">Unable to load the image</string>
+
+    <!-- PS3 theme import -->
+    <string name="theme_bg_ps3">PS3 theme: %1$s</string>
+    <string name="theme_import_ps3">Import PS3 theme (.p3t)…</string>
+    <string name="ps3_import_ok">Theme %1$s imported</string>
+    <string name="ps3_import_ok_author">Theme %1$s by %2$s imported</string>
+    <string name="theme_icons">Icons</string>
+    <string name="theme_icons_ps3">PS3 theme: %1$s</string>
+    <string name="theme_icons_default">Built-in</string>
+    <string name="ps3_err_bad_p3t">Invalid or unsupported .p3t file</string>
+    <string name="ps3_err_no_images">No wallpaper found in this theme</string>
+</resources>

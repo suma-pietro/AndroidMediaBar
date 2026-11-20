@@ -1,0 +1,114 @@
+<resources>
+    <string name="category_settings">Impostazioni</string>
+    <string name="category_photo">Foto</string>
+    <string name="category_music">Musica</string>
+    <string name="category_video">Video</string>
+    <string name="category_games">Giochi</string>
+    <string name="category_apps">App</string>
+
+    <string name="setting_all">Tutte le impostazioni</string>
+    <string name="setting_all_desc">Apri le impostazioni di sistema</string>
+    <string name="setting_network">Rete</string>
+    <string name="setting_network_desc">Wi-Fi e connessione a internet</string>
+    <string name="setting_bluetooth">Bluetooth</string>
+    <string name="setting_bluetooth_desc">Telecomandi, controller e accessori</string>
+    <string name="setting_display">Schermo</string>
+    <string name="setting_display_desc">Risoluzione e immagine</string>
+    <string name="setting_sound">Audio</string>
+    <string name="setting_sound_desc">Uscita audio e suoni di sistema</string>
+    <string name="setting_date">Data e ora</string>
+    <string name="setting_date_desc">Orologio e fuso orario</string>
+    <string name="setting_apps">Applicazioni</string>
+    <string name="setting_apps_desc">Gestisci le app installate</string>
+    <string name="setting_storage">Archiviazione</string>
+    <string name="setting_storage_desc">Spazio libero e dispositivi di memoria</string>
+    <string name="setting_home">Schermata Home</string>
+    <string name="setting_home_desc">Scegli il launcher predefinito</string>
+
+    <string name="empty_category">Nessun contenuto</string>
+    <string name="version_format">Versione %1$s</string>
+    <string name="launch_error">Impossibile aprire questo elemento</string>
+
+    <string name="options_title">Opzioni</string>
+    <string name="option_open">Apri</string>
+    <string name="option_info">Informazioni app</string>
+    <string name="option_uninstall">Disinstalla</string>
+
+    <!-- Suggerimenti tasti del pannello -->
+    <string name="hint_select">Seleziona</string>
+    <string name="hint_back">Indietro</string>
+    <string name="hint_close">Chiudi</string>
+
+    <!-- Menu del launcher -->
+    <string name="menu_theme">Personalizzazione tema</string>
+    <string name="menu_theme_desc">Colore, animazione e sfondo</string>
+    <string name="menu_layout">Colonne e app</string>
+    <string name="menu_layout_desc">Nascondi colonne e scegli dove va ogni app</string>
+    <string name="menu_columns">Mostra/nascondi colonne</string>
+    <string name="menu_assign_apps">Assegna app alle colonne</string>
+    <string name="menu_move_to">Sposta in colonna</string>
+    <string name="option_move">Sposta in colonna…</string>
+    <string name="column_auto">Automatica (%1$s)</string>
+    <string name="column_hidden_suffix">%1$s (nascosta)</string>
+    <string name="columns_hidden_count">%1$d nascoste</string>
+    <string name="columns_all_visible">Tutte visibili</string>
+    <string name="apps_count">%1$d app</string>
+
+    <!-- Personalizzazione tema -->
+    <string name="theme_color">Colore tema</string>
+    <string name="theme_animation">Animazione sfondo</string>
+    <string name="theme_background">Sfondo</string>
+    <string name="theme_blur">Sfocatura sfondo</string>
+    <string name="theme_brightness">Luminosità sfondo</string>
+    <string name="theme_day_night">Ciclo giorno/notte</string>
+
+    <string name="theme_color_original">Originale (cambia ogni mese)</string>
+    <string name="theme_color_silver">Argento</string>
+    <string name="theme_color_gold">Oro</string>
+    <string name="theme_color_green">Verde</string>
+    <string name="theme_color_pink">Rosa</string>
+    <string name="theme_color_emerald">Smeraldo</string>
+    <string name="theme_color_violet">Viola</string>
+    <string name="theme_color_cyan">Ciano</string>
+    <string name="theme_color_blue">Blu</string>
+    <string name="theme_color_purple">Porpora</string>
+    <string name="theme_color_orange">Arancione</string>
+    <string name="theme_color_brown">Marrone</string>
+    <string name="theme_color_red">Rosso</string>
+    <string name="theme_color_black">Nero</string>
+
+    <string name="theme_anim_classic">Onda classica</string>
+    <string name="theme_anim_sparkle">Onda con scintille</string>
+    <string name="theme_anim_bokeh">Luci fluttuanti</string>
+    <string name="theme_anim_static">Onda ferma</string>
+    <string name="theme_anim_none">Nessuna</string>
+
+    <string name="theme_bg_theme">Colore del tema</string>
+    <string name="theme_bg_image">Immagine personalizzata</string>
+    <string name="theme_bg_pick">Scegli un\'immagine…</string>
+    <string name="theme_bg_pick_other">Scegli un\'altra immagine…</string>
+
+    <string name="theme_blur_none">Nessuna</string>
+    <string name="theme_blur_light">Leggera</string>
+    <string name="theme_blur_medium">Media</string>
+    <string name="theme_blur_strong">Forte</string>
+
+    <string name="theme_brightness_format">%1$d%%</string>
+    <string name="theme_on">Attivo</string>
+    <string name="theme_off">Disattivato</string>
+    <string name="theme_only_image">%1$s (solo immagine personalizzata)</string>
+
+    <string name="theme_picker_unavailable">Nessun selettore di immagini o file manager disponibile</string>
+    <string name="theme_image_error">Impossibile caricare l\'immagine</string>
+
+    <!-- Import tema PS3 -->
+    <string name="theme_bg_ps3">Tema PS3: %1$s</string>
+    <string name="theme_import_ps3">Importa tema PS3 (.p3t)…</string>
+    <string name="ps3_import_ok">Tema %1$s importato</string>
+    <string name="ps3_import_ok_author">Tema %1$s di %2$s importato</string>
+    <string name="theme_icons">Icone</string>
+    <string name="theme_icons_ps3">Tema PS3: %1$s</string>
+    <string name="theme_icons_default">Predefinite</string>
+    <string name="ps3_err_bad_p3t">File .p3t non valido o non supportato</string>
+    <string name="ps3_err_no_images">Nessuno sfondo trovato in questo tema</string>
+</resources>
