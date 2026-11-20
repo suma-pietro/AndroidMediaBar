@@ -171,5 +171,6 @@ object GimDecoder {
     private const val FORMAT_8888 = 3
     private const val FORMAT_INDEX4 = 4
     private const val FORMAT_INDEX8 = 5
-    private const val MAX_SIDE = 4096
+    /** Theme pictures are at most a few hundred pixels: 1024 caps a decode at 4 MB. */
+    private const val MAX_SIDE = 1024
 }

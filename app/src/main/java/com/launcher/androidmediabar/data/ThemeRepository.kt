@@ -110,13 +110,14 @@ class ThemeRepository(context: Context) {
         }.isSuccess
     }
 
-    /** Replaces the stored icon set: one PNG per system icon ID. */
-    private fun saveIcons(icons: Map<String, GimDecoder.Image>) {
+    /** Replaces the stored icon set: one PNG per system icon ID, decoding one icon at a time. */
+    private fun saveIcons(icons: Map<String, ByteArray>) {
         val tmp = File(appContext.filesDir, "$PS3_ICONS_DIR.tmp")
         tmp.deleteRecursively()
         tmp.mkdirs()
-        for ((id, image) in icons) {
-            if (!ICON_ID.matches(id)) continue
+        for ((id, gim) in icons) {
+            if (!Ps3ThemeImporter.ICON_ID.matches(id)) continue
+            val image = GimDecoder.decode(gim) ?: continue
             val bitmap = Bitmap.createBitmap(image.pixels, image.width, image.height, Bitmap.Config.ARGB_8888)
             File(tmp, "$id.png").outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
             bitmap.recycle()
@@ -173,8 +174,6 @@ class ThemeRepository(context: Context) {
         const val TARGET_WIDTH = 1920
         const val TARGET_HEIGHT = 1080
 
-        /** IDs become file names: keep them to the plain system naming. */
-        val ICON_ID = Regex("[a-z0-9_]{1,64}")
 
         const val KEY_COLOR = "color"
         const val KEY_ANIMATION = "animation"

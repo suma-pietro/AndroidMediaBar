@@ -19,8 +19,11 @@ object Ps3ThemeImporter {
         val author: String?,
         val version: String?,
         val background: ByteArray,
-        /** System icon ID (e.g. `icon_music`) -> decoded picture. */
-        val icons: Map<String, GimDecoder.Image>,
+        /**
+         * System icon ID (e.g. `icon_music`) -> GIM data. Kept encoded so that only one icon at a
+         * time is ever decoded in memory (see [GimDecoder]).
+         */
+        val icons: Map<String, ByteArray>,
     )
 
     sealed interface Result {
@@ -46,12 +49,16 @@ object Ps3ThemeImporter {
         val background = reader?.let(::declaredBackground) ?: scannedBackground(bytes)
             ?: return Result.Failure(R.string.ps3_err_no_images)
 
+        // Bounded so that a crafted file cannot exhaust memory: real themes have ~60 small icons.
+        var totalBytes = 0L
         val icons = buildMap {
-            reader?.root?.child("icontable")?.children?.forEach { icon ->
-                val id = (icon.attrs["id"] as? P3tReader.Attr.Id)?.value ?: return@forEach
-                val data = reader.file(icon.attrs["src"]) ?: return@forEach
-                val image = if (GimDecoder.isGim(data)) GimDecoder.decode(data) else null
-                if (image != null) put(id, image)
+            for (icon in reader?.root?.child("icontable")?.children.orEmpty()) {
+                if (size >= MAX_ICONS) break
+                val id = (icon.attrs["id"] as? P3tReader.Attr.Id)?.value?.takeIf(ICON_ID::matches) ?: continue
+                val data = reader?.file(icon.attrs["src"])?.takeIf(GimDecoder::isGim) ?: continue
+                totalBytes += data.size
+                if (totalBytes > MAX_ICON_BYTES) break
+                put(id, data)
             }
         }
 
@@ -180,6 +187,11 @@ object Ps3ThemeImporter {
     private const val CXML_HEADER_SIZE = 0x38
     private const val FILE_TABLE_OFFSET = 0x30
     private const val MAX_P3T_SIZE = 64 * 1024 * 1024
+    private const val MAX_ICONS = 128
+    private const val MAX_ICON_BYTES = 32L * 1024 * 1024
+
+    /** IDs become file names: only the plain system naming is accepted. */
+    val ICON_ID = Regex("[a-z0-9_]{1,64}")
     private const val MIN_BG_WIDTH = 640
     private val PNG_SIGNATURE = byteArrayOf(0x89.toByte(), 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A)
 }

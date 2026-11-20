@@ -65,6 +65,7 @@ class P3tReaderTest {
             assertTrue(parsed.name.isNotBlank())
             assertTrue(parsed.background.isNotEmpty())
             assertEquals(icons.size, parsed.icons.size)
+            assertTrue(parsed.icons.values.all { GimDecoder.decode(it) != null })
             println("${theme.name}: \"${parsed.name}\" by ${parsed.author}, ${parsed.icons.size} icons, " +
                 "missing mapped icons: ${Ps3IconMap.allIds - parsed.icons.keys}")
         }
