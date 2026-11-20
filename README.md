@@ -7,6 +7,21 @@ for **real PS3 themes (`.p3t`)**: their wallpaper and their icons.
 Built entirely with Jetpack Compose, designed for the remote (D-pad) first. Runs on
 **Android 10 and later**, so it covers most Android TV devices and boxes in use today.
 
+![The bar on the Video column](docs/screenshots/home.jpg)
+
+## Screenshots
+
+*Default look, no PS3 theme applied.*
+
+| | |
+|---|---|
+| ![Apps column](docs/screenshots/apps.jpg) | ![App options](docs/screenshots/app-options.jpg) |
+| **Apps column**: every installed app, with its TV banner when it has one | **App options**: long-press OK to open, move to another column or inspect an app |
+| ![Settings column](docs/screenshots/settings.jpg) | ![Theme customization](docs/screenshots/theme-menu.jpg) |
+| **Settings column**: launcher menus and system shortcuts | **Theme customization**: PS3 theme import, color, animation, wallpaper… |
+| ![Theme colors with live preview](docs/screenshots/theme-colors.jpg) | |
+| **Live preview**: the background follows the highlighted value before you confirm it | |
+
 ---
 
 ## Features
