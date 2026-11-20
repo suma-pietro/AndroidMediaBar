@@ -80,7 +80,7 @@ mapping lives in [`Ps3Icons.kt`](app/src/main/java/com/launcher/androidmediabar/
 ## Getting started
 
 ### Requirements
-| | |
+|Req.|Detail |
 |---|---|
 | Android | **10 (API 29)** or later |
 | Device | Android TV or Google TV, remote with D-pad. Phones and tablets work too, but the launcher is designed for TV |
