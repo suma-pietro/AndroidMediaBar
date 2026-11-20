@@ -102,11 +102,120 @@ cd AndroidMediaBar
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Then make it your home screen: **Settings → Home screen** inside the launcher, or the system
-default-apps settings. The app can also be opened like a normal app while trying it out.
+### Set it as your home screen
 
-To import a theme, the TV needs a file picker or file manager. Many TVs have none built in: any
-file manager app from the store will do.
+AndroidMediaBar is a real launcher, not an overlay drawn on top of another one: it declares the
+system `HOME` category, so once it is the default home app the Home button opens it directly.
+You can also open it like any other app from the app list while trying it out.
+
+How you make it the default depends on the device.
+
+#### Option A: Android TV devices that let you choose (try this first)
+
+Many devices (Nvidia Shield, most Android TV boxes, older TVs) ask which home app to use.
+
+1. Install AndroidMediaBar.
+2. Press the **Home** button on the remote.
+3. If a "Select a home app" dialog appears, pick **AndroidMediaBar**, then **Always**.
+
+If no dialog appears, look for a default-apps setting: inside AndroidMediaBar open
+**Settings → Home screen**, or in the system settings look for **Apps → Default apps → Home app**
+(the exact path varies by manufacturer). If neither exists, or Home keeps opening the stock
+launcher, your device locks the stock launcher in: use option B.
+
+#### Option B: Google TV and locked devices (disable the stock launcher with adb)
+
+Many Google TV devices (Chromecast with Google TV, recent Sony, TCL, Philips, Hisense models...)
+never offer a choice: the Home button always opens Google's launcher. Disabling that launcher
+leaves AndroidMediaBar as the only home app. This is **fully reversible** (step 9) and does not
+root or modify the system: it only turns the stock launcher off for your user.
+
+You need a computer on the same network as the TV.
+
+1. **Install AndroidMediaBar on the TV first, and open it once** from the app list to check it
+   works. Do not skip this: it is what the Home button will open after step 7.
+
+2. **Enable Developer options on the TV.** Go to **Settings → System → About**, select
+   **Android TV OS build** (or **Build**) and press OK on it **7 times**, until a message says
+   "You are now a developer".
+
+3. **Enable debugging.** Go to **Settings → System → Developer options** and turn on
+   **USB debugging**. Some devices also have a separate **Network debugging** / **Wireless
+   debugging** switch: turn that on too.
+
+4. **Find the TV's IP address.** Go to **Settings → Network & Internet**, select your network and
+   note the **IP address** (for example `192.168.1.50`).
+
+5. **Install adb on the computer.** Download the
+   [Android SDK Platform-Tools](https://developer.android.com/tools/releases/platform-tools) and
+   unzip them. Open a terminal in that folder (on Windows use `adb.exe` instead of `adb`).
+
+6. **Connect to the TV**, using the IP address from step 4:
+   ```bash
+   adb connect 192.168.1.50:5555
+   ```
+   The TV shows an **"Allow debugging?"** prompt: check **Always allow from this computer** and
+   choose **OK**. Then make sure the TV is listed as `device` (not `unauthorized`):
+   ```bash
+   adb devices
+   ```
+   **If the connection is refused** and your TV has a **Wireless debugging** switch (newer
+   Google TV devices), pair it first: in **Developer options → Wireless debugging** choose
+   **Pair device with pairing code**. The TV shows an address with a port and a 6-digit code:
+   ```bash
+   adb pair 192.168.1.50:37123      # address and port from the pairing screen, then type the code
+   adb connect 192.168.1.50:40123   # address and port shown on the main Wireless debugging screen
+   ```
+
+7. **Find the stock launcher's package name.** It differs between devices:
+   ```bash
+   adb shell pm list packages | grep -i launcher
+   ```
+   On Windows use `findstr /i launcher` instead of `grep -i launcher`. Common names:
+
+   | Device | Stock launcher package |
+   |---|---|
+   | Google TV | `com.google.android.apps.tv.launcherx` |
+   | Classic Android TV | `com.google.android.tvlauncher` |
+
+   Other manufacturers may use their own package: pick the one that is clearly the TV launcher,
+   **never** `com.launcher.androidmediabar` (that is AndroidMediaBar itself).
+
+8. **Disable the stock launcher** (Google TV shown here; replace the package name if yours is
+   different):
+   ```bash
+   adb shell pm disable-user --user 0 com.google.android.apps.tv.launcherx
+   ```
+   The command answers with `... new state: disabled-user`. Now press **Home** on the remote:
+   AndroidMediaBar opens. If a "Select a home app" dialog appears, pick AndroidMediaBar and
+   **Always**. To double-check which app is the home screen:
+   ```bash
+   adb shell cmd package resolve-activity -a android.intent.action.MAIN -c android.intent.category.HOME
+   ```
+   The output should mention `com.launcher.androidmediabar`.
+
+9. **To go back to the stock launcher at any time**, re-enable it:
+   ```bash
+   adb shell pm enable com.google.android.apps.tv.launcherx
+   ```
+   Then press Home (choose the stock launcher if asked). A factory reset also restores it.
+
+Good to know:
+- With the stock launcher disabled you lose its content rows and recommendations. Apps, the
+  system Settings (also reachable from AndroidMediaBar's **Settings** column) and the remote's
+  own buttons keep working.
+- A system update may re-enable the stock launcher: if Home opens it again, repeat steps 6 and 8.
+- When you are done you can turn **USB debugging** off again (step 3).
+
+#### Option C: remap the Home button
+
+If you prefer not to disable anything, a "button mapper" app from the store can send the Home
+button to AndroidMediaBar instead. Results vary by device and remote.
+
+### Importing themes and wallpapers
+
+To import a theme or a wallpaper, the TV needs a file picker or file manager. Many TVs have none
+built in: any file manager app from the store will do.
 
 ### Controls
 
