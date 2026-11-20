@@ -65,6 +65,7 @@ import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.input.key.type
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -78,6 +79,7 @@ import com.launcher.androidmediabar.LauncherViewModel
 import com.launcher.androidmediabar.R
 import com.launcher.androidmediabar.data.LauncherIntents
 import com.launcher.androidmediabar.data.Ps3ThemeImporter
+import com.launcher.androidmediabar.data.queryActivitiesCompat
 import com.launcher.androidmediabar.data.XmbCatalog
 import com.launcher.androidmediabar.model.AppItem
 import com.launcher.androidmediabar.model.CategoryType
@@ -94,6 +96,7 @@ import kotlin.math.floor
 @Composable
 fun XmbLauncherScreen(viewModel: LauncherViewModel = viewModel()) {
     val context = LocalContext.current
+    val resources = LocalResources.current
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val theme by viewModel.theme.collectAsStateWithLifecycle()
     val wallpaper by viewModel.wallpaper.collectAsStateWithLifecycle()
@@ -110,12 +113,12 @@ fun XmbLauncherScreen(viewModel: LauncherViewModel = viewModel()) {
                 is Ps3ThemeImporter.Result.Success -> {
                     val author = result.theme.author
                     if (author != null) {
-                        context.getString(R.string.ps3_import_ok_author, result.theme.name, author)
+                        resources.getString(R.string.ps3_import_ok_author, result.theme.name, author)
                     } else {
-                        context.getString(R.string.ps3_import_ok, result.theme.name)
+                        resources.getString(R.string.ps3_import_ok, result.theme.name)
                     }
                 }
-                is Ps3ThemeImporter.Result.Failure -> context.getString(result.messageRes)
+                is Ps3ThemeImporter.Result.Failure -> resources.getString(result.messageRes)
             }
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
         }
@@ -469,7 +472,7 @@ private const val TV_STUBS_PACKAGE = "com.android.tv.frameworkpackagestubs"
 
 private fun Context.hasRealHandler(intent: Intent): Boolean =
     packageManager
-        .queryIntentActivities(intent, PackageManager.ResolveInfoFlags.of(PackageManager.MATCH_DEFAULT_ONLY.toLong()))
+        .queryActivitiesCompat(intent, PackageManager.MATCH_DEFAULT_ONLY)
         .any { it.activityInfo.packageName != TV_STUBS_PACKAGE }
 
 private fun List<XmbCategory>.indexOfType(type: CategoryType): Int =

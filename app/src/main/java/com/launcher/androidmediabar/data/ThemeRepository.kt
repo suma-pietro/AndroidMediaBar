@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
 import java.io.File
+import java.nio.ByteBuffer
 import kotlin.math.max
 import kotlin.math.roundToInt
 
@@ -67,7 +68,8 @@ class ThemeRepository(context: Context) {
         if (result !is Ps3ThemeImporter.Result.Success) return@withContext result
         val theme = result.theme
 
-        if (!saveWallpaper(ImageDecoder.createSource(theme.background), ps3WallpaperFile)) {
+        // ByteBuffer source: the ByteArray overload only exists from Android 12.
+        if (!saveWallpaper(ImageDecoder.createSource(ByteBuffer.wrap(theme.background)), ps3WallpaperFile)) {
             return@withContext Ps3ThemeImporter.Result.Failure(R.string.ps3_err_no_images)
         }
         saveIcons(theme.icons)

@@ -1,5 +1,6 @@
 package com.launcher.androidmediabar.ui.xmb
 
+import android.os.Build
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Apps
 import androidx.compose.material.icons.rounded.BlurOn
@@ -54,6 +55,8 @@ internal fun themeRootEntries(s: XmbThemeSettings): List<MenuEntry> {
     val settings = ThemeSetting.entries
         // Icons can only be switched once a PS3 theme provides an alternative set.
         .filter { it != ThemeSetting.ICONS || s.hasPs3Theme }
+        // Compose blur relies on RenderEffect, available from Android 12 only.
+        .filter { it != ThemeSetting.BLUR || Build.VERSION.SDK_INT >= Build.VERSION_CODES.S }
         .map { setting ->
             MenuEntry(
                 label = res(setting.titleRes),

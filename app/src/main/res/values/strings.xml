@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidMediaBar</string>
+    <string name="app_name" translatable="false">AndroidMediaBar</string>
 
     <string name="category_settings">Settings</string>
     <string name="category_photo">Photo</string>

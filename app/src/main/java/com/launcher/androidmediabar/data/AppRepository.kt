@@ -8,6 +8,7 @@ import android.content.IntentFilter
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
+import android.os.Build
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.core.graphics.drawable.toBitmap
 import com.launcher.androidmediabar.model.AppItem
@@ -53,23 +54,26 @@ class AppRepository(context: Context) {
             addAction(Intent.ACTION_PACKAGE_REPLACED)
             addDataScheme("package")
         }
-        // Package broadcasts are protected and can only be sent by the system.
+        // Package broadcasts are protected and can only be sent by the system. The flag only exists
+        // (and is only required) from Android 13: older releases ignore it.
         appContext.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED)
         awaitClose { appContext.unregisterReceiver(receiver) }
     }
 
     private fun query(category: String): List<ResolveInfo> =
-        packageManager.queryIntentActivities(
-            Intent(Intent.ACTION_MAIN).addCategory(category),
-            PackageManager.ResolveInfoFlags.of(0L),
-        )
+        packageManager.queryActivitiesCompat(Intent(Intent.ACTION_MAIN).addCategory(category))
 
     private fun ResolveInfo.toAppItem(leanback: Boolean): AppItem {
         val activity = activityInfo
         val appInfo = activity.applicationInfo
         val packageName = activity.packageName
         val versionName = runCatching {
-            packageManager.getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(0L)).versionName
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                packageManager.getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(0L)).versionName
+            } else {
+                @Suppress("DEPRECATION")
+                packageManager.getPackageInfo(packageName, 0).versionName
+            }
         }.getOrNull()
         val banner = activity.loadBanner(packageManager)
             ?.toBitmap(BANNER_WIDTH_PX, BANNER_HEIGHT_PX)

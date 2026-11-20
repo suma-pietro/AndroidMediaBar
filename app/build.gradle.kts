@@ -19,10 +19,11 @@ android {
 
     defaultConfig {
         applicationId = "com.launcher.androidmediabar"
-        minSdk = 36
+        // Android 10: covers most Android TV devices still in use.
+        minSdk = 29
         targetSdk = 37
-        versionCode = 1
-        versionName = "0.0.1-beta"
+        versionCode = 2
+        versionName = "0.0.2-beta"
     }
 
     signingConfigs {

@@ -4,7 +4,8 @@ A home screen for **Android TV** inspired by the cross media bar of the PlayStat
 horizontal categories, vertical lists, an animated wave background and, as a bonus, support
 for **real PS3 themes (`.p3t`)**: their wallpaper and their icons.
 
-Built entirely with Jetpack Compose, designed for the remote (D-pad) first.
+Built entirely with Jetpack Compose, designed for the remote (D-pad) first. Runs on
+**Android 10 and later**, so it covers most Android TV devices and boxes in use today.
 
 ---
 
@@ -25,7 +26,7 @@ Built entirely with Jetpack Compose, designed for the remote (D-pad) first.
 - **Theme color:** "Original" changes every month like the classic bar, or pick one of 13 colors.
 - **Background animation:** classic wave, wave with sparkles, floating lights, still wave or none.
 - **Wallpaper:** the animated theme color, your own picture, or the wallpaper of an installed PS3
-  theme. Blur and brightness are adjustable.
+  theme. Brightness is adjustable, and so is blur on Android 12 and later.
 - **Day/night cycle:** the background follows the time of day.
 - **Live preview:** each value is previewed while you move through the list.
 
@@ -63,10 +64,18 @@ mapping lives in [`Ps3Icons.kt`](app/src/main/java/com/launcher/androidmediabar/
 
 ## Getting started
 
+### Requirements
+| | |
+|---|---|
+| Android | **10 (API 29)** or later |
+| Device | Android TV or Google TV, remote with D-pad. Phones and tablets work too, but the launcher is designed for TV |
+| Theme import | A file picker or file manager on the TV (any file manager from the store will do) |
+| Wallpaper blur | Android 12 or later (hidden on older releases) |
+
 ### Download
 Grab the signed APK from the [Releases](../../releases) page and sideload it, for example with
-`adb install AndroidMediaBar-0.0.1-beta.apk`. It needs an Android TV device running
-**Android 16 (API 36)** or later. See the [changelog](CHANGELOG.md) for what's new.
+`adb install AndroidMediaBar-0.0.2-beta.apk`. Updates install over the previous version and
+keep your settings. See the [changelog](CHANGELOG.md) for what's new.
 
 ### Build from source
 Requires Android Studio with the bundled JDK (AGP 9.5, compile SDK 37).
