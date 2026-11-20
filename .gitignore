@@ -14,6 +14,10 @@
 .cxx
 local.properties
 .kotlin
+# Release signing: the keystore and its passwords stay on the maintainer's machine.
+keystore.properties
+*.jks
+*.keystore
 # Personal PSN content and licenses: never commit them.
 *.rap
 *.pkg

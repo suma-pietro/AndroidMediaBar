@@ -63,8 +63,13 @@ mapping lives in [`Ps3Icons.kt`](app/src/main/java/com/launcher/androidmediabar/
 
 ## Getting started
 
-**Requirements:** an Android TV device running **Android 16 (API 36)** or later, and Android
-Studio with the bundled JDK (AGP 9.5, compile SDK 37).
+### Download
+Grab the signed APK from the [Releases](../../releases) page and sideload it, for example with
+`adb install AndroidMediaBar-0.0.1-beta.apk`. It needs an Android TV device running
+**Android 16 (API 36)** or later. See the [changelog](CHANGELOG.md) for what's new.
+
+### Build from source
+Requires Android Studio with the bundled JDK (AGP 9.5, compile SDK 37).
 
 ```bash
 git clone <this-repo>
